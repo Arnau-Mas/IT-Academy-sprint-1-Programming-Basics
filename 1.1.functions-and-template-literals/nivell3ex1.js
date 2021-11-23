@@ -1,4 +1,4 @@
-let arrayFunctions = [printNumbers, printNumbers, printNumbers, printNumbers, printNumbers, printNumbers, printNumbers, printNumbers, printNumbers, printNumbers];
+let arrayFunctions = []; 
 
 function printNumbers(numMin, numMax){
     if(numMin<numMax){
@@ -8,6 +8,11 @@ function printNumbers(numMin, numMax){
     }else{
         console.log("The first number have to be lower than the second number.");
     }
+}
+
+//Bucle for per afegir la funció dins l'array
+for(i=0; i<10; i++){
+    arrayFunctions[i] = printNumbers;
 }
 
 function invokeFunctions(array){
