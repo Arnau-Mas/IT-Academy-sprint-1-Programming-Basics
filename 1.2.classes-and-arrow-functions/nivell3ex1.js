@@ -10,7 +10,7 @@ class Building {
     }
 
     instanceTest(){
-        console.log("Has aconseguit fer una instància");
+        console.log("Has aconseguit fer una instància\n");
     }
 }
 
