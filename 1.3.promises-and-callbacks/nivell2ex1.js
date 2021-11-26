@@ -20,12 +20,13 @@ let salaries = [{
     salary: 2000
 }];
 
-let getEmployee = (id, objectsArray) => {
+let getEmployee = (id, employeArray) => {
     return new Promise(function(resolve,reject){
         setTimeout(()=>{
-            let idFound = findObject(id, objectsArray);
-            if(idFound !=-1){
-                resolve(objectsArray[idFound]);
+            console.log(id)
+            let employe = employeArray.find(employe => employe.id == id);
+            if(employe){
+                resolve(employe);
             }else{
                 reject("No s'ha trobat coincidència");
             }
@@ -34,20 +35,7 @@ let getEmployee = (id, objectsArray) => {
     })
 }
 
-function findObject(id, objectsArray){
-    let idFound = -1;
-    let i = 0;
-    while(i<objectsArray.length && idFound==-1){
-        if(objectsArray[i].id==id){
-            idFound = i;
-        }else{
-            i++;
-        }
-    }
-    return idFound;
-}
-
 getEmployee(Math.floor(Math.random()*6), employees)
-    .then((object) => console.log(object))
-    .catch((error) => console.log(error))
-    .finally( ()=> console.log("finalized promise"))
+.then((employe) => console.log(employe))
+.catch((error) => console.log(error))
+.finally( ()=> console.log("finalized promise"))
