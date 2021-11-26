@@ -1,4 +1,4 @@
 let userName = "Arnau";
-(function(word){
+let showName = (function(word){
     console.log(word);
 })(userName);

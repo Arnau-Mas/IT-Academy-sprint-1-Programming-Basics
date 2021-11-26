@@ -1,7 +1,8 @@
 //********* ENTREGA 1.2 : CLASSES & ARROW FUNCTIONS *********
 
     //NIVELL 1 exercici 1
-    console.log(((num1,num2)=> num1+num2)(4,6));
+    let suma = ((num1,num2)=> num1+num2)(4,6);
+    console.log(suma);
 
     //NIVELL 2 exercici 1
     let myArrowFunction = (parameter)=>{
