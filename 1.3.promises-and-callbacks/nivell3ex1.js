@@ -34,7 +34,6 @@ let getEmployee = (id, employeArray) => {
         
 }
 
-//Crea una altra arrow function getSalary que rebi com a paràmetre un objecte employee i retorni el seu salari.
 let getSalary = (employeObject) => {
     return new Promise((resolve,reject)=>{
         setTimeout(()=>{
