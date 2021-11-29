@@ -49,9 +49,13 @@
 
      //Nivell 1 Exercici 2
      const printEmployeData = async (employeId) =>{
-        let employe = await getEmploye(employeId);
-        let salary = await getSalary(employe);
-        console.log(employe.name, salary);
+        try{
+            let employe = await getEmploye(employeId);
+            let salary = await getSalary(employe);
+            console.log(employe.name, salary);
+        }catch(error){
+            console.log("L'error és:", error)
+        }
      }
 
     printEmployeData(2);
@@ -70,11 +74,15 @@
     }
 
     const callIsNumber = async (number) =>{
-        let result = await delayedFunction(number);
-        console.log(result);
+        try{
+            let result = await isNumber(number);
+            console.log(result);
+        }catch(error){
+            console.log("L'error és:", error)
+        } 
     }
 
-    callIsNumber(4);
+    callIsNumber(2);
 
     //Nivell 2 Exercici 3
     //fet als propis exercicis
