@@ -42,4 +42,4 @@ const getEmploye = (id) =>{
             reject("No s'ha trobat el salari");
         }
      })
- }
+ } 

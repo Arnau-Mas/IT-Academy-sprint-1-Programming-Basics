@@ -69,4 +69,4 @@ const callIsNumber = async (number) =>{
     console.log(result);
 }
 
-callIsNumber(4);
+callIsNumber(4); 

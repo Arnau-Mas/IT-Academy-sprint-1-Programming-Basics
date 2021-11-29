@@ -50,4 +50,4 @@ const printEmployeData = async (employeId) =>{
     console.log(employe.name, salary);
  }
 
-printEmployeData(2);
+printEmployeData(2); 
