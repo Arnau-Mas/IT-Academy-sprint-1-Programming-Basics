@@ -63,13 +63,11 @@
     //Nivell 2 Exercici 1
     const isNumber = (number) =>{
         return new Promise((resolve, reject) => {
-            setTimeout(()=>{
                 if(!isNaN(number)){
                     resolve(`El número introduit és ${number}`);
                 }else{
                     reject(`Això no és un número`);
                 }  
-            },2000)
         })
     }
 
