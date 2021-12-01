@@ -115,10 +115,10 @@
     //NIVELL 2 exercici 3
     getEmployee(1, employees)
     .then(employe => getSalary(employe)
-    .then((salary) => console.log(`Nivell 2 exercici 3: El empleado ${employe.name} tiene un sueldo de ${salary}`)))
+        .then((salary) => console.log(`Nivell 2 exercici 3: El empleado ${employe.name} tiene un sueldo de ${salary}`)))
 
     //NIVELL 3 exercici 1
-    getEmployee(6, employees)
+    getEmployee(3, employees)
     .then(employe => getSalary(employe)
-    .then((salary) => console.log(`El empleado ${employe.name} tiene un sueldo de ${salary}`)))
+        .then((salary) => console.log(`El empleado ${employe.name} tiene un sueldo de ${salary}`)))
     .catch((error)=> console.log(`Nivell 3 exercici 1: ${error}`))
