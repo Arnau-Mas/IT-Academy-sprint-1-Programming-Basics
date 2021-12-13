@@ -50,21 +50,23 @@ const getEmploye = (id) =>{
     return {name: employe.name, salary: salary};
  }
 
-const isNumber = (number) =>{
+ const isNumber = (number) =>{
     return new Promise((resolve, reject) => {
-        setTimeout(()=>{
             if(!isNaN(number)){
                 resolve(`El número introduit és ${number}`);
             }else{
                 reject(`Això no és un número`);
             }  
-        },2000)
     })
 }
 
 const callIsNumber = async (number) =>{
-    let result = await delayedFunction(number);
-    console.log(result);
+    try{
+        let result = await isNumber(number);
+        return result;
+    }catch(error){
+        return error;
+    } 
 }
 
 
