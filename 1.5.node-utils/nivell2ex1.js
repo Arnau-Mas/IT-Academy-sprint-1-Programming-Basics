@@ -17,4 +17,6 @@ const {promisify} = require("util");
     }
 
     compressFile("file.txt", "input.txt.gz");
+
+    console.log(pipeline);
     

@@ -1,11 +1,7 @@
 //ENTREGA 1.5: NODE UTILS
     
     const fs = require("fs"); //modul per interactuar amb documents
-    //metodes per comprimir documents
-    const {pipeline} = require("stream"); 
-    const {createGzip} = require("zlib");
-    const {createReadStream, createWriteStream} = require("fs");
-    const {promisify} = require("util");
+
 
     //Nivell 1 Exercici 1
     const print = () => {
@@ -17,31 +13,35 @@
     print();
 
     //Nivell 1 Exercici 2
-    const phrase = `(Frase escrita el dia i hora ${new Date()}`;
-    function writeOnFile(){
+    function writeOnFile(file, phrase){
         try{
-            fs.writeFileSync('file.txt', phrase);
+            fs.writeFileSync(file, phrase);
             console.log("N1 exercici 2: Frase escrita al fitxer!");
         }catch(err){
             console.error(err);
         }
     }
 
-    writeOnFile();
+    writeOnFile('file.txt', `(Frase escrita el dia i hora ${new Date()}`);
 
     //Nivell 1 Exercici 3
-    function showFile(){
+    function showFile(file){
         try{
-            const data = fs.readFileSync("file.txt", "utf8");
+            const data = fs.readFileSync(file, "utf8");
             console.log("Nivell 1 Exercici 3", data);
         }catch(err){
             console.log(err);
         }
     }
 
-    showFile();
-
+    showFile("file.txt");
+    
     //Nivell 2 exercici 1
+    const {pipeline} = require("stream"); 
+    const {createGzip} = require("zlib");
+    const {createReadStream, createWriteStream} = require("fs");
+    const {promisify} = require("util");
+    
     const pipe = promisify(pipeline);
     async function compressFile(input, output){
         try{
@@ -55,4 +55,21 @@
     }
 
     compressFile("file.txt", "input.txt.gz");
+    
+    //Nivell 2 exercici 2
+    const { spawn } = require('child_process');
+    const child = spawn('dir', ['D:\Test'], {shell: true});
+    child.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+    });
+    
+    child.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`);
+    });
+    
+    child.on('close', (code) => {
+    console.log("child process exited");
+    });
+
+    //Nivell 3 exercici 1
     
