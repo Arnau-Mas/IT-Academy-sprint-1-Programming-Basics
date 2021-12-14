@@ -4,6 +4,10 @@ test("sumar 3+2 hauria de donar 5", ()=>{
     expect(sumar(3,2)).toBe(5);
 });
 
+test("sumar 3+5 hauria de donar 8", ()=>{
+    expect(sumar(3,5)).toBe(8);
+});
+
 test("restar 3-2 hauria de donar 1", ()=>{
     expect(restar(3,2)).toBe(1);
 });

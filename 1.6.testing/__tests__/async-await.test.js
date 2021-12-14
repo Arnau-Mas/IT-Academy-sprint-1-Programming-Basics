@@ -21,12 +21,8 @@ test("getEmploye amb id = 2 hauria de retornar l'objecte de Bill Gates", async (
 })
 
 test("getEmploye amb id = 4 hauria de retornar 'Employe not found'", async ()=>{
-    try{
-        await AsyncAwaitFunctions.getEmploye(4)
-    }catch(err){
-        expect(err).toMatch("Employe not found")
-    }
-})
+    await expect(AsyncAwaitFunctions.getEmploye(4)).rejects.toEqual("Employe not found")
+}) 
 
 //TESTS getSalary
 test("getSalary de getEmploye(2) haria de ser 1000", async ()=>{
@@ -66,11 +62,7 @@ test("printEmployeData de 3 hauria de mostrar Jeff Bezos, 2000", async ()=>{
 }) 
 
 test("printEmployeData de 4 hauria de donar l'error 'Employe not found'", async ()=>{
-    try{
-        const data = await AsyncAwaitFunctions.printEmployeData(3)
-    }catch(err){
-        expect(err).toMatch("Employe not found")
-    }
+    await expect(AsyncAwaitFunctions.printEmployeData(4)).rejects.toEqual("Employe not found")
 }) 
 
 //TESTS isNumber
@@ -90,27 +82,7 @@ test("isNumber 1.5 hauria de mostrar 'El número introduit és 1.5'", async () =
 })
 
 test("isNumber 'a' hauria de donar l'error 'Això no és un número'", async () => {
-    try{
-        const data = await AsyncAwaitFunctions.isNumber("a");
-    }catch(err){
-        expect(err).toMatch("Això no és un número");
-    }
-})
-
-test("isNumber 'a' hauria de donar l'error 'Això no és un número'", async () => {
-    try{
-        const data = await AsyncAwaitFunctions.isNumber("a");
-    }catch(err){
-        expect(err).toMatch("Això no és un número");
-    }
-})
-
-test("isNumber true hauria de donar l'error 'Això no és un número'", async () => {
-    try{
-        const data = await AsyncAwaitFunctions.isNumber(true);
-    }catch(err){
-        expect(err).toMatch("Això no és un número");
-    }
+    await expect(AsyncAwaitFunctions.isNumber("a")).rejects.toEqual("Això no és un número")
 })
 
 //TESTS callIsNumber
@@ -125,17 +97,18 @@ test("callIsNumber de 5 hauria de mostrar 'El número introduit és 1.5'", async
 })
 
 test("callIsNumber 'a' hauria de mostrar 'Això no és un número'", async () =>{
-    try{
-        const data = await AsyncAwaitFunctions.callIsNumber('a');
-    }catch(err){
-        expect(err).toMatch("Això no és un número")
-    } 
+    await expect(AsyncAwaitFunctions.callIsNumber("a")).rejects.toEqual("Això no és un número")
 })
 
-test("callIsNumber true hauria de mostrar 'Això no és un número'", async () =>{
-    try{
-        const data = await AsyncAwaitFunctions.callIsNumber(true);
-    }catch(err){
-        expect(err).toMatch("Això no és un número")
-    } 
-})
+
+/* 
+També puc fer test amb trycatch
+
+    test("getEmploye amb id = 4 hauria de retornar 'Employe not found'", async ()=>{
+        try{
+            await AsyncAwaitFunctions.getEmploye(4)
+        }catch(err){
+            expect(err).toMatch("Employe not found")
+        }
+    }) 
+*/

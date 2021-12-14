@@ -69,7 +69,6 @@ const callIsNumber = async (number) =>{
     } 
 }
 
-
  exports.employees = employees;
  exports.salaries = salaries;
  exports.getEmploye = getEmploye;
