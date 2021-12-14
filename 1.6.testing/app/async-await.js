@@ -66,8 +66,14 @@ const callIsNumber = async (number) =>{
         return result;
     }catch(error){
         return error;
-    } 
+    }
 }
+
+/* async function a (){
+    console.log(await callIsNumber("a"));
+}
+
+a() */
 
  exports.employees = employees;
  exports.salaries = salaries;
