@@ -1,5 +1,6 @@
 const AsyncAwaitFunctions = require("../app/async-await");
-
+jest.useFakeTimers();
+jest.setTimeout(20000)
 //TESTS getEmploye
 describe("tests de la funció getEmploye", ()=>{
     //He fet aquesta primera en promesa per practicar, les demés totes en async await
@@ -71,30 +72,40 @@ describe("tests de la funció printEmployeData", () => {
     })
 }) 
 
+//ARREGLAR AIXÒ PQ AMB EL SETTIMEOUT NO FA BÉ L'EXPECT
 //TESTS isNumber
 describe("tests de la funció isNumber", () => {
     test("isNumber 4 hauria de mostrar 'El número introduit és 4'", async () => {
         const data = await AsyncAwaitFunctions.isNumber(4);
+        jest.runAllTimers();
         expect(data).toBe("El número introduit és 4");
     })
     
     test("isNumber 5 hauria de mostrar 'El número introduit és 5'", async () => {
         const data = await AsyncAwaitFunctions.isNumber(5);
+        jest.runAllTimers();
         expect(data).toBe("El número introduit és 5");
     })
     
     test("isNumber 1.5 hauria de mostrar 'El número introduit és 1.5'", async () => {
         const data = await AsyncAwaitFunctions.isNumber(1.5);
+        jest.runAllTimers();
         expect(data).toBe("El número introduit és 1.5");
     })
     
     test("isNumber 'a' hauria de donar l'error 'Això no és un número'", async () => {
-        await expect(AsyncAwaitFunctions.isNumber("a")).rejects.toEqual("Això no és un número")
+        const data = AsyncAwaitFunctions.isNumber("a");
+        jest.runAllTimers();
+        expect(data).reject.toMatch("Això no és un número");
     })
 })
 
 //TESTS callIsNumber
-describe("tests de la funció callIsNumber", () => {
+/* describe("tests de la funció callIsNumber", () => {
+    AsyncAwaitFunctions.callIsNumber(5);
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
+
     test("callIsNumber de 5 hauria de mostrar 'El número introduit és 5'", async () =>{
         const data = await AsyncAwaitFunctions.callIsNumber(5);
         expect(data).toBe("El número introduit és 5")
@@ -112,25 +123,4 @@ describe("tests de la funció callIsNumber", () => {
         expect(callIsNumberTest()).rejects.toMatch("Això no és un número")
     })
 })
-
-
-
-
-
-/* 
-També puc fer test amb trycatch
-
-    test("getEmploye amb id = 4 hauria de retornar 'Employe not found'", async ()=>{
-        try{
-            await AsyncAwaitFunctions.getEmploye(4)
-        }catch(err){
-            expect(err).toMatch("Employe not found")
-        }
-    }) 
-
-Aquest test no funciona pq al emmagatzemar el resultat a una constant, la constant ja no esta catalogada com error. Per lo que el rejects, sobra, hauria de ser: expect(data).toEqual("Això no es un número") o toMatch, però he preferit que capturés l'error ficant-la en una altra funció a la línia 108.
-test("callIsNumber de 5 hauria de mostrar 'El número introduit és 1.5'", async () =>{
-        const data = await AsyncAwaitFunctions.callIsNumber("a");
-        expect(data).rejects.toEqual("Això no és un número")
-}) 
-*/
+ */

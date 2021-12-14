@@ -53,7 +53,9 @@ const getEmploye = (id) =>{
  const isNumber = (number) =>{
     return new Promise((resolve, reject) => {
             if(!isNaN(number)){
-                resolve(`El número introduit és ${number}`);
+                setTimeout(()=>{
+                    resolve(`El número introduit és ${number}`);
+                },2000) 
             }else{
                 reject(`Això no és un número`);
             }  
