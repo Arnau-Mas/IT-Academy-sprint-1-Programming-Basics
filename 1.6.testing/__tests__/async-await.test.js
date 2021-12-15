@@ -101,6 +101,7 @@ describe("tests de la funció isNumber", () => {
         jest.runAllTimers();
         await expect(asyncFunc).rejects.toMatch("Això no és un número"); 
         //Aqui s'ha de posar l'await i la funció en l'expect, pq si l'emmagatzemes a una variable com en els casos anteriors, et tira l'error abans d'arribar a l'expect.
+        //També podria fer try catch aqui  en el test i hagués funcionat
     })
 })
 
