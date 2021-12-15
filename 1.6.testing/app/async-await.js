@@ -67,7 +67,7 @@ const callIsNumber = async (number) =>{
         let result = await isNumber(number);
         return result;
     }catch(error){
-        return error;
+        throw error;
     }
 }
 

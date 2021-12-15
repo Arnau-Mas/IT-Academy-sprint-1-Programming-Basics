@@ -1,6 +1,7 @@
 const AsyncAwaitFunctions = require("../app/async-await");
+
 jest.useFakeTimers();
-jest.setTimeout(20000)
+
 //TESTS getEmploye
 describe("tests de la funció getEmploye", ()=>{
     //He fet aquesta primera en promesa per practicar, les demés totes en async await
@@ -72,55 +73,59 @@ describe("tests de la funció printEmployeData", () => {
     })
 }) 
 
-//ARREGLAR AIXÒ PQ AMB EL SETTIMEOUT NO FA BÉ L'EXPECT
 //TESTS isNumber
 describe("tests de la funció isNumber", () => {
     test("isNumber 4 hauria de mostrar 'El número introduit és 4'", async () => {
-        const data = await AsyncAwaitFunctions.isNumber(4);
-        jest.runAllTimers();
+        const asyncFunc = AsyncAwaitFunctions.isNumber(4);
+        jest.runAllTimers(); //Executem la funció a dalt, per després utilitzar el runAllTimers i fer que es resolgui la promesa.
+        const data = await asyncFunc;
         expect(data).toBe("El número introduit és 4");
     })
     
     test("isNumber 5 hauria de mostrar 'El número introduit és 5'", async () => {
-        const data = await AsyncAwaitFunctions.isNumber(5);
+        const asyncFunc = AsyncAwaitFunctions.isNumber(5);
         jest.runAllTimers();
+        const data = await asyncFunc;
         expect(data).toBe("El número introduit és 5");
     })
     
     test("isNumber 1.5 hauria de mostrar 'El número introduit és 1.5'", async () => {
-        const data = await AsyncAwaitFunctions.isNumber(1.5);
+        const asyncFunc = AsyncAwaitFunctions.isNumber(1.5);
         jest.runAllTimers();
+        const data = await asyncFunc;
         expect(data).toBe("El número introduit és 1.5");
     })
     
     test("isNumber 'a' hauria de donar l'error 'Això no és un número'", async () => {
-        const data = AsyncAwaitFunctions.isNumber("a");
+        const asyncFunc = AsyncAwaitFunctions.isNumber("a");
         jest.runAllTimers();
-        expect(data).reject.toMatch("Això no és un número");
+        await expect(asyncFunc).rejects.toMatch("Això no és un número"); 
+        //Aqui s'ha de posar l'await i la funció en l'expect, pq si l'emmagatzemes a una variable com en els casos anteriors, et tira l'error abans d'arribar a l'expect.
     })
 })
 
-//TESTS callIsNumber
-/* describe("tests de la funció callIsNumber", () => {
-    AsyncAwaitFunctions.callIsNumber(5);
-    expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
 
+
+//TESTS callIsNumber
+describe("tests de la funció callIsNumber", () => {
     test("callIsNumber de 5 hauria de mostrar 'El número introduit és 5'", async () =>{
-        const data = await AsyncAwaitFunctions.callIsNumber(5);
+        const asyncFunc = AsyncAwaitFunctions.callIsNumber(5);
+        jest.runAllTimers();
+        const data = await asyncFunc;
         expect(data).toBe("El número introduit és 5")
     })
     
     test("callIsNumber de 5 hauria de mostrar 'El número introduit és 1.5'", async () =>{
-        const data = await AsyncAwaitFunctions.callIsNumber(1.5);
+        const asyncFunc = AsyncAwaitFunctions.callIsNumber(1.5);
+        jest.runAllTimers();
+        const data = await asyncFunc;
         expect(data).toBe("El número introduit és 1.5")
     })
     
     test("callIsNumber 'a' hauria de mostrar 'Això no és un número'", async () =>{
-        async function callIsNumberTest(){
-            return await AsyncAwaitFunctions.callIsNumber("a");
-        }
-        expect(callIsNumberTest()).rejects.toMatch("Això no és un número")
+        const asyncFunc = AsyncAwaitFunctions.callIsNumber("a");
+        jest.runAllTimers();
+        await expect(asyncFunc).rejects.toMatch("Això no és un número"); //això no em funcionava pq a la funció callIsNumber en el catch, feia return de l'error enlloc de throw error.
     })
 })
- */
+
