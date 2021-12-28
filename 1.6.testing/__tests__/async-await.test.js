@@ -105,8 +105,6 @@ describe("tests de la funció isNumber", () => {
     })
 })
 
-
-
 //TESTS callIsNumber
 describe("tests de la funció callIsNumber", () => {
     test("callIsNumber de 5 hauria de mostrar 'El número introduit és 5'", async () =>{
